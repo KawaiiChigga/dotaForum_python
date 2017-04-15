@@ -196,7 +196,7 @@ def getPostSearch(request, judul):
         serializer = PostSerializer(queryset, many=True)
         return Response(serializer.data)
 
-# /post/bycategory/{id_receiver}/
+# /post/bycategory/{category}/{sort}/
 @api_view(['GET'])
 def getPostByCategory(request, category, sort):
     category = category - 1

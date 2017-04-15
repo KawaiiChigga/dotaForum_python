@@ -38,7 +38,9 @@ urlpatterns = [
     url(r'^dislikes/getall/$', views.getAllDislikes),
     url(r'^dislikes/$', views.addDislike),
 
-    url(r'^post/getall/{jenis}/$', views.getAllPost),
+    url(r'^post/getall/(?P<judul>[A-Za-z]+)/$', views.getAllPost),
+    url(r'^post/search/(?P<judul>[A-Za-z0-9]+)/$', views.getPostSearch),
+    url(r'^/post/bycategory/(?P<category>[A-Za-z]+)/(?P<sort>[A-Za-z]+)/$', views.getPostByCategory),
 
 
     url(r'^message/getall/$', views.getAllMessage),
