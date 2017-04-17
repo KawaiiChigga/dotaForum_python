@@ -135,6 +135,17 @@ def getAllLikes(request,id_post):
         serializer = LikesSerializer(queryset, many=True)
         return Response(serializer.data)
 
+# /likes/getall/
+@api_view(['GET'])
+def checkLikeUser(request, id_post, id_user):
+    if request.method == 'GET':
+        try:
+            queryset = Likes.objects.get(id_post=id_post, id_user=id_user)
+        except Likes.DoesNotExist:
+            return Response(data={'message': False})
+        else:
+            return Response(data={'message': True})
+
 # /likes/
 @api_view(['PUT'])
 def addLike(request):
@@ -160,6 +171,18 @@ def getAllDislikes(request,id_post):
         queryset = Dislikes.objects.all().filter(id_post=id_post)
         serializer = DislikesSerializer(queryset, many=True)
         return Response(serializer.data)
+
+# /likes/getall/
+@api_view(['GET'])
+def checkDislikeUser(request, id_post, id_user):
+    if request.method == 'GET':
+        try:
+            queryset = Dislikes.objects.get(id_post=id_post, id_user=id_user)
+        except Dislikes.DoesNotExist:
+            return Response(data={'message':False})
+        else:
+            return Response(data={'message': True})
+
 
 # /dislikes/
 @api_view(['PUT'])
