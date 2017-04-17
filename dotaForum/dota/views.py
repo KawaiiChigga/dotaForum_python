@@ -278,6 +278,14 @@ def post(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# /likes/delete/{pk}/
+@api_view(['GET'])
+def deletePost(request, pk):
+    if request.method == 'GET':
+        queryset = Post.objects.get(pk=pk)
+        queryset.delete()
+        return Response()
+
 #---------------------MESSAGE-----------------------------
 
 # @api_view(['GET'])

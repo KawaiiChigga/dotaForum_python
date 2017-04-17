@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^post/category/(?P<category>[0-9]+)/(?P<sort>[A-Za-z]+)/$', views.getPostByCategory),
     url(r'^post/$', views.insertPost),
     url(r'^post/(?P<pk>[0-9]+)/$', views.post),
+    url(r'^post/delete/(?P<pk>[0-9]+)/$', views.deletePost),
 
 
     # url(r'^message/getall/$', views.getAllMessage),
