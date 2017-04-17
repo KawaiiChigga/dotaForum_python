@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecdf9745-fa44-43cf-893d-c7995c040f95" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dotaForum/dotaForum/settings.py" afterPath="$PROJECT_DIR$/dotaForum/dotaForum/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,27 +20,27 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dotaForum/dota/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1649">
-              <caret line="105" column="17" lean-forward="false" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="17" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+                <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="39" column="67" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="39" selection-end-column="67" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="205">
@@ -53,8 +53,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dotaForum/dota/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="62" column="28" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="62" selection-end-column="28" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,6 +66,7 @@
     <findStrings>
       <find>jenis</find>
       <find>delete</find>
+      <find>host</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,9 +75,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dotaForum/dota/views.py" />
         <option value="$PROJECT_DIR$/dotaForum/dotaForum/urls.py" />
         <option value="$PROJECT_DIR$/dotaForum/dotaForum/settings.py" />
+        <option value="$PROJECT_DIR$/dotaForum/dota/views.py" />
       </list>
     </option>
   </component>
@@ -178,7 +179,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -222,7 +222,7 @@
           <caret line="105" column="17" lean-forward="false" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="17" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
@@ -249,7 +249,7 @@
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="42" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
@@ -276,7 +276,7 @@
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="42" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
@@ -303,7 +303,7 @@
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="42" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
@@ -330,7 +330,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
@@ -365,14 +365,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dotaForum/dota/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="62" column="28" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="62" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -381,29 +373,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dotaForum/dota/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dotaForum/dota/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="105" column="17" lean-forward="false" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1492424284096" expanded="true" signature="9623:10003" ph="..." />
+            <marker date="1492432768769" expanded="true" signature="9623:10003" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="39" column="67" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="39" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dotaForum/dotaForum/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
