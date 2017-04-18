@@ -1,3 +1,5 @@
+from typing import re
+
 from django.db.models import QuerySet
 from django.shortcuts import render
 from rest_framework import status
@@ -6,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from dota.models import User, Categories, Comment, Likes, Dislikes, Post, Message, Reply, Report
 from dota.serializer import UserSerializer, CategoriesSerializer, CommentSerializer, LikesSerializer, DislikesSerializer
-from dota.serializer import PostSerializer, MessageSerializer, ReplySerializer, ReportSerializer
+from dota.serializer import PostSerializer, MessageSerializer, ReplySerializer, ReportSerializer, RegSerializer
 
 
 # Create your views here.
@@ -25,7 +27,8 @@ from dota.serializer import PostSerializer, MessageSerializer, ReplySerializer, 
 @api_view(['PUT'])
 def insertUser(request):
     if request.method == 'PUT':
-        serializer = UserSerializer(data=request.data)
+        print(request.data)
+        serializer = RegSerializer(data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -38,9 +41,13 @@ def checkLogIn(request):
     if request.method == 'POST':
         username = request.data.get('username', None)
         password = request.data.get('password', None)
-        queryset = User.objects.get(username=username, password=password)
-        serializer = UserSerializer(queryset)
-        return Response(serializer.data)
+        try:
+            queryset = User.objects.get(username=username, password=password)
+            serializer = UserSerializer(queryset)
+            return Response(serializer.data)
+        except:
+            return Response(None)
+
     # try:
     #     queryset = Likes.objects.get(id_post=id_post, id_user=id_user)
     # except Likes.DoesNotExist:
@@ -52,12 +59,14 @@ def checkLogIn(request):
 @api_view(['GET'])
 def checkUser(request, username, email):
     if request.method == 'GET':
+        print("hai" + email)
         try:
             queryset = User.objects.get(username=username) | User.objects.get(email=email)
-        except Likes.DoesNotExist:
-            return Response(data={'message': False})
+        except User.DoesNotExist:
+            return Response(None)
         else:
-            return Response(data={'message': True})
+            serializer = UserSerializer(queryset)
+            return Response(serializer.data)
 
 
 # /user/{uid}/
@@ -93,8 +102,8 @@ def user(request, pk):
 @api_view(['GET'])
 def getCategory(request, category):
     if request.method == 'GET':
-        queryset = Categories.objects.all().filter(category=category)
-        serializer = CategoriesSerializer(queryset, many=True)
+        queryset = Categories.objects.get(category=category)
+        serializer = CategoriesSerializer(queryset)
         return Response(serializer.data)
 
 
@@ -112,6 +121,7 @@ def getCommentByUser(request, id_user):
 # /comment/
 @api_view(['PUT'])
 def insertComment(request):
+    print(request.data)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -292,6 +302,7 @@ def getProfilePost(request, id_user):
 @api_view(['PUT'])
 def insertPost(request):
     if request.method == 'PUT':
+        print(request.data)
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

@@ -7,6 +7,11 @@ class UserSerializer (serializers.ModelSerializer):
         model = User
         exclude = ('password',)
 
+class RegSerializer (serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
 class CategoriesSerializer (serializers.ModelSerializer):
     class Meta:
         model = Categories

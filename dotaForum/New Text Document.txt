@@ -1,0 +1,1 @@
+{"password": "zzzz", "url_foto": " ", "progress_level": "0", "date_time": "2017-04-18 17:34:46", "level": 1, "last_name": "zzxca", "first_name": "zzzz", "jenis_kelamin": "L", "email": "zzz@gmail.com", "username": "zzzz"}
