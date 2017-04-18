@@ -35,12 +35,12 @@ urlpatterns = [
     url(r'^likes/(?P<id_post>[0-9]+)/$', views.getAllLikes),
     url(r'^likes/check/(?P<id_post>[0-9]+)/(?P<id_user>[0-9]+)/$', views.checkLikeUser),
     url(r'^likes/$', views.addLike),
-    url(r'^likes/delete/(?P<pk>[0-9]+)/$', views.deleteLike),
-    url(r'^dislikes/(?P<id_post>[0-9]+)/$', views.getAllDislikes),
+    url(r'^likes/delete/(?P<id_post>[0-9]+)/(?P<id_user>[0-9]+)/$', views.deleteLike),
 
+    url(r'^dislikes/(?P<id_post>[0-9]+)/$', views.getAllDislikes),
     url(r'^dislikes/check/(?P<id_post>[0-9]+)/(?P<id_user>[0-9]+)/$', views.checkDislikeUser),
     url(r'^dislikes/$', views.addDislike),
-    url(r'^dislikes/delete/(?P<pk>[0-9]+)/$', views.deleteDislike),
+    url(r'^dislikes/delete/(?P<id_post>[0-9]+)/(?P<id_user>[0-9]+)/$', views.deleteDislike),
 
     url(r'^post/(?P<jenis>[A-Za-z]+)/$', views.getAllPost),
     url(r'^post/search/(?P<judul>[A-Za-z0-9]+)/$', views.getPostSearch),

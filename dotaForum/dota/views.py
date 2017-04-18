@@ -156,11 +156,11 @@ def addLike(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# /likes/delete/{pk}/
+# /likes/delete/{id_post}/{id_user}
 @api_view(['GET'])
-def deleteLike(request,pk):
+def deleteLike(request,id_post,id_user):
     if request.method == 'GET':
-        queryset = Likes.objects.get(pk=pk)
+        queryset = Likes.objects.get(id_post=id_post,id_user=id_user)
         queryset.delete()
         return Response()
 
@@ -194,11 +194,11 @@ def addDislike(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# /dislikes/delete/{pk}
+# /dislikes/delete/{id_post}/{id_user}
 @api_view(['GET'])
-def deleteDislike(request,pk):
+def deleteDislike(request,id_post,id_user):
     if request.method == 'GET':
-        queryset = Dislikes.objects.get(pk=pk)
+        queryset = Dislikes.objects.get(id_post=id_post,id_user=id_user)
         queryset.delete()
         return Response()
 
