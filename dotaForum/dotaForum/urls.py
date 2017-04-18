@@ -22,11 +22,12 @@ urlpatterns = [
     url(r'^user/(?P<pk>[0-9]+)/$', views.user),
     url(r'^user/$', views.insertUser),
     url(r'^user/login/$', views.checkLogIn),
+    url(r'^user/check/(?P<username>[A-Za-z]+)/(?P<email>[A-Za-z]+)/$', views.checkUser),
 
     # url(r'^categories/getall/$', views.getAllCategories),
     url(r'^categories/(?P<category>[A-Za-z]+)/$', views.getCategory),
 
-    # url(r'^comment/getall/$', views.getAllComment),
+    url(r'^comment/user/(?P<id_user>[0-9]+)/$', views.getCommentByUser),
     url(r'^comment/$', views.insertComment),
     url(r'^comment/(?P<id_post>[0-9]+)/$', views.getCommentById),
     url(r'^comment/delete/(?P<id_comment>[0-9]+)/$', views.deleteComment),
@@ -43,6 +44,7 @@ urlpatterns = [
     url(r'^dislikes/delete/(?P<id_post>[0-9]+)/(?P<id_user>[0-9]+)/$', views.deleteDislike),
 
     url(r'^post/(?P<jenis>[A-Za-z]+)/$', views.getAllPost),
+    url(r'^post/user/(?P<id_user>[0-9]+)/$', views.getPostByUser),
     url(r'^post/search/(?P<judul>[A-Za-z0-9]+)/$', views.getPostSearch),
     url(r'^post/profile/(?P<id_user>[0-9]+)/$', views.getProfilePost),
     url(r'^post/category/(?P<category>[0-9]+)/(?P<sort>[A-Za-z]+)/$', views.getPostByCategory),
@@ -51,7 +53,8 @@ urlpatterns = [
     url(r'^post/delete/(?P<pk>[0-9]+)/$', views.deletePost),
 
 
-    # url(r'^message/getall/$', views.getAllMessage),
+    url(r'^message/sender/(?P<id_user>[0-9]+)/$', views.getMsgBySender),
+    url(r'^message/receiver/(?P<id_user>[0-9]+)/$', views.getMsgByReceiver),
     url(r'^message/$', views.insertMessage),
     url(r'^message/inbox/(?P<id_receiver>[0-9]+)/$', views.getInbox),
     url(r'^message/inbox/(?P<id_sender>[0-9]+)/(?P<id_receiver>[0-9]+)/$', views.getMsgFromId),

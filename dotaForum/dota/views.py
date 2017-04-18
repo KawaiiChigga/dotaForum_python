@@ -8,9 +8,10 @@ from dota.models import User, Categories, Comment, Likes, Dislikes, Post, Messag
 from dota.serializer import UserSerializer, CategoriesSerializer, CommentSerializer, LikesSerializer, DislikesSerializer
 from dota.serializer import PostSerializer, MessageSerializer, ReplySerializer, ReportSerializer
 
+
 # Create your views here.
 
-#-----------------------USER---------------------------
+# -----------------------USER---------------------------
 
 # /user/getall/
 # @api_view(['GET'])
@@ -30,6 +31,7 @@ def insertUser(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /user/checkLogin/
 @api_view(['POST'])
 def checkLogIn(request):
@@ -39,6 +41,24 @@ def checkLogIn(request):
         queryset = User.objects.get(username=username, password=password)
         serializer = UserSerializer(queryset)
         return Response(serializer.data)
+    # try:
+    #     queryset = Likes.objects.get(id_post=id_post, id_user=id_user)
+    # except Likes.DoesNotExist:
+    #     return Response(data={'message': False})
+    # else:
+    #     return Response(data={'message': True})
+
+# /user/check/{username}/{email}
+@api_view(['GET'])
+def checkUser(request, username, email):
+    if request.method == 'GET':
+        try:
+            queryset = User.objects.get(username=username) | User.objects.get(email=email)
+        except Likes.DoesNotExist:
+            return Response(data={'message': False})
+        else:
+            return Response(data={'message': True})
+
 
 # /user/{uid}/
 @api_view(['GET', 'PUT'])
@@ -58,7 +78,8 @@ def user(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#----------------------CATEGORIES----------------------------
+
+# ----------------------CATEGORIES----------------------------
 
 # /categories/getall/
 # @api_view(['GET'])
@@ -76,15 +97,17 @@ def getCategory(request, category):
         serializer = CategoriesSerializer(queryset, many=True)
         return Response(serializer.data)
 
-#---------------------COMMENT-----------------------------
 
-# /comment/getall
-# @api_view(['GET'])
-# def getAllComment(request):
-#     if request.method == 'GET':
-#         queryset = Comment.objects.all()
-#         serializer = CommentSerializer(queryset, many=True)
-#         return Response(serializer.data)
+# ---------------------COMMENT-----------------------------
+
+# /comment/user/{id}
+@api_view(['GET'])
+def getCommentByUser(request, id_user):
+    if request.method == 'GET':
+        queryset = Comment.objects.all().filter(id_user=id_user)
+        serializer = CommentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 # /comment/
 @api_view(['PUT'])
@@ -95,21 +118,24 @@ def insertComment(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /comment/{id_comment}/
 @api_view(['GET'])
-def getCommentById(request,id_post):
+def getCommentById(request, id_post):
     if request.method == 'GET':
         queryset = Comment.objects.all().filter(id_post=id_post)
         serializer = CommentSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
 # /comment/delete/{id_comment}/
 @api_view(['GET'])
-def deleteComment(request,id_comment):
+def deleteComment(request, id_comment):
     if request.method == 'GET':
         queryset = Comment.objects.get(id_comment=id_comment)
         queryset.delete()
         return Response()
+
 
 # /comment/udpate/{pk}
 # @api_view(['PUT'])
@@ -125,15 +151,16 @@ def deleteComment(request,id_comment):
 #         return Response(serializer.data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#--------------------LIKEDISLIKES------------------------------
+# --------------------LIKEDISLIKES------------------------------
 
 # /likes/getall/
 @api_view(['GET'])
-def getAllLikes(request,id_post):
+def getAllLikes(request, id_post):
     if request.method == 'GET':
         queryset = Likes.objects.all().filter(id_post=id_post)
         serializer = LikesSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /likes/getall/
 @api_view(['GET'])
@@ -146,6 +173,7 @@ def checkLikeUser(request, id_post, id_user):
         else:
             return Response(data={'message': True})
 
+
 # /likes/
 @api_view(['PUT'])
 def addLike(request):
@@ -156,21 +184,24 @@ def addLike(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /likes/delete/{id_post}/{id_user}
 @api_view(['GET'])
-def deleteLike(request,id_post,id_user):
+def deleteLike(request, id_post, id_user):
     if request.method == 'GET':
-        queryset = Likes.objects.get(id_post=id_post,id_user=id_user)
+        queryset = Likes.objects.get(id_post=id_post, id_user=id_user)
         queryset.delete()
         return Response()
 
+
 # /dislikes/getall/
 @api_view(['GET'])
-def getAllDislikes(request,id_post):
+def getAllDislikes(request, id_post):
     if request.method == 'GET':
         queryset = Dislikes.objects.all().filter(id_post=id_post)
         serializer = DislikesSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /likes/getall/
 @api_view(['GET'])
@@ -179,7 +210,7 @@ def checkDislikeUser(request, id_post, id_user):
         try:
             queryset = Dislikes.objects.get(id_post=id_post, id_user=id_user)
         except Dislikes.DoesNotExist:
-            return Response(data={'message':False})
+            return Response(data={'message': False})
         else:
             return Response(data={'message': True})
 
@@ -194,19 +225,21 @@ def addDislike(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /dislikes/delete/{id_post}/{id_user}
 @api_view(['GET'])
-def deleteDislike(request,id_post,id_user):
+def deleteDislike(request, id_post, id_user):
     if request.method == 'GET':
-        queryset = Dislikes.objects.get(id_post=id_post,id_user=id_user)
+        queryset = Dislikes.objects.get(id_post=id_post, id_user=id_user)
         queryset.delete()
         return Response()
 
-#----------------------POST----------------------------
 
-#/post/{jenis}/
+# ----------------------POST----------------------------
+
+# /post/{jenis}/
 @api_view(['GET'])
-def getAllPost(request,jenis):
+def getAllPost(request, jenis):
     if request.method == 'GET':
         queryset = Post.objects.all().order_by('-like_post')
         if jenis == 'new':
@@ -214,13 +247,24 @@ def getAllPost(request,jenis):
         serializer = PostSerializer(queryset, many=True)
         return Response(serializer.data)
 
-#/post/search/{judul}/
+
+# /post/user/{id_user}
+@api_view(['GET'])
+def getPostByUser(request, id_user):
+    if request.method == 'GET':
+        queryset = Post.objects.all().filter(id_user=id_user)
+        serializer = PostSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+# /post/search/{judul}/
 @api_view(['GET'])
 def getPostSearch(request, judul):
     if request.method == 'GET':
         queryset = Post.objects.all().filter(judul__icontains=judul).order_by('-like_post')
         serializer = PostSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /post/category/{category}/{sort}/
 @api_view(['GET'])
@@ -234,6 +278,7 @@ def getPostByCategory(request, category, sort):
         serializer = PostSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
 # /post/profile/{id_user}/
 @api_view(['GET'])
 def getProfilePost(request, id_user):
@@ -241,6 +286,7 @@ def getProfilePost(request, id_user):
         queryset = Post.objects.all().filter(id_user=id_user)
         serializer = PostSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /post/
 @api_view(['PUT'])
@@ -252,6 +298,7 @@ def insertPost(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /post/{pk}/
 @api_view(['GET'])
 def getPostById(request, pk):
@@ -259,6 +306,7 @@ def getPostById(request, pk):
         queryset = Post.objects.get(pk=pk)
         serializer = PostSerializer(queryset)
         return Response(serializer.data)
+
 
 # /post/{pk}/
 @api_view(['GET', 'PUT'])
@@ -278,6 +326,7 @@ def post(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /likes/delete/{pk}/
 @api_view(['GET'])
 def deletePost(request, pk):
@@ -286,14 +335,26 @@ def deletePost(request, pk):
         queryset.delete()
         return Response()
 
-#---------------------MESSAGE-----------------------------
 
-# @api_view(['GET'])
-# def getAllMessage(request):
-#     if request.method == 'GET':
-#         queryset = Message.objects.all()
-#         serializer = MessageSerializer(queryset, many=True)
-#         return Response(serializer.data)
+# ---------------------MESSAGE-----------------------------
+
+# /message/sender/{id_user}
+@api_view(['GET'])
+def getMsgBySender(request, id_user):
+    if request.method == 'GET':
+        queryset = Message.objects.all().filter(id_sender=id_user)
+        serializer = MessageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+# /message/receiver/{id_user}
+@api_view(['GET'])
+def getMsgByReceiver(request, id_user):
+    if request.method == 'GET':
+        queryset = Message.objects.all().filter(id_receiver=id_user)
+        serializer = MessageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 # /message/
 @api_view(['PUT'])
@@ -304,8 +365,9 @@ def insertMessage(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # /message/inbox/{id_receiver}/
-#harusnya ada -> group by id_sender
+# harusnya ada -> group by id_sender
 @api_view(['GET'])
 def getInbox(request, id_receiver):
     if request.method == 'GET':
@@ -315,13 +377,17 @@ def getInbox(request, id_receiver):
         serializer = MessageSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
 # /message/inbox/{id_sender}/{id_receiver}/
 @api_view(['GET'])
 def getMsgFromId(request, id_receiver, id_sender):
     if request.method == 'GET':
-        queryset = Message.objects.all().filter(id_receiver=id_receiver,id_sender=id_sender).order_by('date_time') | Message.objects.all().filter(id_receiver=id_sender,id_sender=id_receiver).order_by('date_time')
+        queryset = Message.objects.all().filter(id_receiver=id_receiver, id_sender=id_sender).order_by(
+            'date_time') | Message.objects.all().filter(id_receiver=id_sender, id_sender=id_receiver).order_by(
+            'date_time')
         serializer = MessageSerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /message/delete/{pk}/
 # @api_view(['GET'])
@@ -346,14 +412,15 @@ def getMsgFromId(request, id_receiver, id_sender):
 #         return Response(serializer.data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#----------------------REPLY----------------------------
+# ----------------------REPLY----------------------------
 # /reply/{id_comment}/
 @api_view(['GET'])
-def getReplyByCommentId(request,id_comment):
+def getReplyByCommentId(request, id_comment):
     if request.method == 'GET':
         queryset = Reply.objects.all().filter(id_comment=id_comment)
         serializer = ReplySerializer(queryset, many=True)
         return Response(serializer.data)
+
 
 # /reply/delete/{pk}/
 @api_view(['GET'])
@@ -362,6 +429,7 @@ def deleteReply(request, pk):
         queryset = Reply.objects.get(pk=pk)
         queryset.delete()
         return Response()
+
 
 # /reply/
 @api_view(['PUT'])
@@ -372,7 +440,7 @@ def insertReply(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#----------------------REPORT----------------------------
+# ----------------------REPORT----------------------------
 
 # @api_view(['GET'])
 # def getAllReport(request):
@@ -380,4 +448,3 @@ def insertReply(request):
 #         queryset = Report.objects.all()
 #         serializer = ReportSerializer(queryset, many=True)
 #         return Response(serializer.data)
-
