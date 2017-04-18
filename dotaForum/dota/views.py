@@ -78,14 +78,17 @@ def user(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = UserSerializer(queryset)
+        serializer = RegSerializer(queryset)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = UserSerializer(queryset, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = RegSerializer(queryset, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        except User.DoesNotExist:
+            return Response(None)
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # ----------------------CATEGORIES----------------------------
