@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^user/(?P<pk>[0-9]+)/$', views.user),
     url(r'^user/$', views.insertUser),
     url(r'^user/login/$', views.checkLogIn),
-    url(r'^user/check/(?P<username>[A-Za-z]+)/(?P<email>[A-Za-z\@\.]+)/$', views.checkUser),
+    url(r'^user/check/(?P<username>[A-Za-z]+)/(?P<email>[A-Za-z0-9\@\.]+)/$', views.checkUser),
 
     # url(r'^categories/getall/$', views.getAllCategories),
     url(r'^categories/(?P<category>[A-Za-z]+)/$', views.getCategory),
